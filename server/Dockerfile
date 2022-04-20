@@ -39,7 +39,8 @@ RUN gdebi -n /tmp/shiny.deb && \
     chown rstudio.rstudio /var/log/shiny-server && \
     chmod go+w -R /var/log/shiny-server /usr/local/lib/R /srv /var/lib/shiny-server &&\
     mkdir -p /var/log/rstudio-server &&\
-    chown rstudio.rstudio /var/log/rstudio-server
+    chown rstudio.rstudio /var/log/rstudio-server &&\
+    chmod go+w /var/log/rstudio-server
 
 
 COPY rserver.conf rsession.conf /etc/rstudio/
