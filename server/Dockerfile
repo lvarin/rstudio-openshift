@@ -1,6 +1,8 @@
 # Upstream Dockerfile https://github.com/rocker-org/rocker-versioned/blob/master/tidyverse/3.4.4/Dockerfile
 FROM rocker/tidyverse:4.0.2
 
+ARG USERNAME=rstudio
+
 RUN apt-get update && apt-get install --no-install-recommends -y \
     nano \
     libcurl4-openssl-dev \
@@ -49,7 +51,7 @@ COPY shiny-server.conf /etc/shiny-server/shiny-server.conf
 COPY .Renviron $HOME/.Renviron
 
 #OpenShift additions
-RUN if [ "$USERNAME" != "rstudio" ] ; then useradd -m $USERNAME ; fi
+RUN if [[ ! -z "$USERNAME" && "$USERNAME" != "rstudio" ]] ; then useradd -m $USERNAME ; fi
 
 RUN chmod a+x /usr/local/bin/start.sh
 
@@ -71,7 +73,7 @@ RUN chgrp root /etc/shadow
 RUN chmod ug+rw /etc/shadow
 
 RUN chgrp root /usr/local/bin/fix.sh \
-    && chmod 774 /usr/local/bin/fix.sh
+    && chmod 775 /usr/local/bin/fix.sh
 
 
 USER $APP_UID:$APP_GID
