@@ -66,7 +66,7 @@ RUN chgrp root -R /usr/local/lib/R/site-library
 
 COPY fix.sh /usr/local/bin/fix.sh
 RUN chmod ug+rw /etc/
-RUN chmod ug+rw /etc/rasswd
+RUN chmod ug+rw /etc/passwd
 RUN chmod ug+rw /etc/group
 
 RUN chgrp root /etc/shadow
