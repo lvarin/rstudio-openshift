@@ -11,8 +11,8 @@ then
 fi
 
 # Add rstudio-server and $USERNAME entries
-echo "rstudio-server:x:$(id -u):$(id -g)::$HOME:" >> /etc/passwd
-echo "$USERNAME:x:$(id -u):$(id -g)::$HOME:" >> /etc/passwd
+echo "rstudio-server:x:$(id -u):$(id -g)::$HOME:/usr/sbin/nologin" >> /etc/passwd
+echo "$USERNAME:x:$(id -u):$(id -g)::$HOME:/usr/sbin/nologin" >> /etc/passwd
 
 echo "Creating group entries"
 
